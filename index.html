@@ -24,7 +24,6 @@
 
     <script>
         let scene, camera, renderer, objModel;
-        let textureLoader = new THREE.TextureLoader();
         const loadingManager = new THREE.LoadingManager();
 
         loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
@@ -56,6 +55,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
+            let textureLoader = new THREE.TextureLoader(loadingManager);
             const baseColorTexture = textureLoader.load('assets/base_colour.png');
             const normalMapTexture = textureLoader.load('assets/normal.png');
             const aoMapTexture = textureLoader.load('assets/mixed_ao.png');
