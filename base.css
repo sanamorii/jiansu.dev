@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.content {
+    margin: 0 35em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
