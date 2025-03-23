@@ -33,20 +33,20 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.body.appendChild(renderer.domElement);
 
-            const baseColorTexture = textureLoader.load('models/base_colour.png');
-            const normalMapTexture = textureLoader.load('models/normal.png');
-            const aoMapTexture = textureLoader.load('models/mixed_ao.png');
+            const baseColorTexture = textureLoader.load('assets/base_colour.png');
+            const normalMapTexture = textureLoader.load('assets/normal.png');
+            const aoMapTexture = textureLoader.load('assets/mixed_ao.png');
 
             const material = new THREE.MeshStandardMaterial({
                 map: baseColorTexture,
                 normalMap: normalMapTexture,
                 aoMap: aoMapTexture,
-                roughness: 0.8,
+                roughness: 1.,
                 metalness: 0.0
             });
 
             const loader = new THREE.OBJLoader();
-            loader.load('models/reimu_low.obj', (object) => {
+            loader.load('assets/reimu_low.obj', (object) => {
                 objModel = object;
                 objModel.traverse(function(child) {
                     if (child.isMesh) {
