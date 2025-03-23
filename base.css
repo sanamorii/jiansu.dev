@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font-family: monospace;
-    height: 100vh;
 }
 
 canvas {
@@ -12,9 +11,9 @@ canvas {
 }
 
 .content {
-    margin: 0 35em;
+    margin: 5rem 0em;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    align-items: center;
     flex-direction: column;
-    height: 100%;
 }
