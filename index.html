@@ -5,22 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jiansu.dev</title>
     <link rel="stylesheet" href="base.css">
+    <style>
+
+    </style>
 </head>
 <body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">Loading...</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
 
     <div class="content">
-        
         <h1>jiansu.dev</h1>
-        i yearn for death
-    
+        something something
     </div>
 
     <script>
         let scene, camera, renderer, objModel;
         let textureLoader = new THREE.TextureLoader();
+        const loadingManager = new THREE.LoadingManager();
+
+        loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+            console.log('Started loading: ' + url);
+        };
+
+        loadingManager.onLoad = function () {
+            console.log('All assets are loaded!');
+            document.getElementById('loading-screen').style.display = 'none';
+            document.querySelector('.content').style.display = 'flex'; // Show the content div
+        };
+
+        loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+            console.log('Loading: ' + url);
+        };
+
+        loadingManager.onError = function (url) {
+            console.log('Error loading ' + url);
+        };
 
         function init() {
             scene = new THREE.Scene();
@@ -45,12 +68,12 @@
                 metalness: 0.0
             });
 
-            const loader = new THREE.OBJLoader();
+            const loader = new THREE.OBJLoader(loadingManager);
             loader.load('assets/reimu_low.obj', (object) => {
                 objModel = object;
                 objModel.traverse(function(child) {
                     if (child.isMesh) {
-                    child.material = material;
+                        child.material = material;
                     }
                 });
                 objModel.rotation.x = 4.65692;
@@ -79,7 +102,6 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
         }
-
 
         function animate() {
             requestAnimationFrame(animate);
