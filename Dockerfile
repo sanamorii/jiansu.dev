@@ -1,5 +1,3 @@
-FROM nginx:latest
+FROM caddy:alpine
 
-COPY . /usr/share/nginx/html
-
-EXPOSE 80
+COPY . /usr/share/caddy
